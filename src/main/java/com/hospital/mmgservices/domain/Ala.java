@@ -1,13 +1,15 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Ala implements Serializable {
@@ -20,11 +22,70 @@ public class Ala implements Serializable {
 	@Column(name = "nomeQuarto", length = 10, nullable = true )
 	private String nomeQuarto;
 	
-	@ManyToOne
-    private Quarto quarto;
+	
+    @ManyToMany(mappedBy = "ala")
+    private List<Quarto> quarto = new ArrayList<>();
 	
 	public Ala() {
 		
 	}
+
+	public Ala(Integer id, String nomeQuarto, List<Quarto> quarto) {
+		super();
+		this.id = id;
+		this.nomeQuarto = nomeQuarto;
+		this.quarto = quarto;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNomeQuarto() {
+		return nomeQuarto;
+	}
+
+	public void setNomeQuarto(String nomeQuarto) {
+		this.nomeQuarto = nomeQuarto;
+	}
+
+	public List<Quarto> getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(List<Quarto> quarto) {
+		this.quarto = quarto;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ala other = (Ala) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 
 }
