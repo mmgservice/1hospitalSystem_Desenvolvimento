@@ -3,6 +3,7 @@ package com.hospital.mmgservices.domain;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -27,6 +29,7 @@ public class Paciente implements Serializable {
 	private Integer id;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "datasistema", nullable = true)
 	private Date datasistema;
 
 	@Column(name = "nome", length = 50, nullable = true)
@@ -78,11 +81,11 @@ public class Paciente implements Serializable {
 
 	@Column(name = "nomedopai", length = 50, nullable = true)
 	private String nomedopai;
-	
+
 	@OneToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
-	
+
 	@OneToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;
@@ -90,11 +93,14 @@ public class Paciente implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "alergia_id")
 	private Alergia alergia;
-	
+
 	@OneToOne
 	@JoinColumn(name = "residencia_id")
 	private Residencia residencia;
-	
+
+	@OneToMany(mappedBy = "paciente")
+	private List<Exame> exame;
+
 	public Paciente() {
 
 	}
@@ -102,7 +108,7 @@ public class Paciente implements Serializable {
 	public Paciente(Integer id, Date datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
 			String rg, String cpf, String sexo, String cor, String endereco, String complemento, Integer cep,
 			String bairro, String estadocivil, Set<String> telefones, String nomedamae, String nomedopai, Cidade cidade,
-			Estado estado, Alergia alergia, Residencia residencia) {
+			Estado estado, Alergia alergia, Residencia residencia, List<Exame> exame) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
@@ -126,11 +132,8 @@ public class Paciente implements Serializable {
 		this.estado = estado;
 		this.alergia = alergia;
 		this.residencia = residencia;
+		this.exame = exame;
 	}
-
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -275,7 +278,7 @@ public class Paciente implements Serializable {
 	public void setNomedopai(String nomedopai) {
 		this.nomedopai = nomedopai;
 	}
-	
+
 	public Cidade getCidade() {
 		return cidade;
 	}
@@ -283,7 +286,7 @@ public class Paciente implements Serializable {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
+
 	public Estado getEstado() {
 		return estado;
 	}
@@ -291,7 +294,6 @@ public class Paciente implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-	
 
 	public Alergia getAlergia() {
 		return alergia;
@@ -307,6 +309,14 @@ public class Paciente implements Serializable {
 
 	public void setResidencia(Residencia residencia) {
 		this.residencia = residencia;
+	}
+
+	public List<Exame> getExame() {
+		return exame;
+	}
+
+	public void setExame(List<Exame> exame) {
+		this.exame = exame;
 	}
 
 	@Override
