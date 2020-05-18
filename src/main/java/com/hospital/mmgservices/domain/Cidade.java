@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cidade implements Serializable {
 
@@ -24,20 +26,20 @@ public class Cidade implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
+	@JsonIgnore
 	private Estado estado;
 
-	private Paciente paciente;
 
 	public Cidade() {
 
 	}
 
-	public Cidade(Integer id, String nome, Estado estado, Paciente paciente) {
+	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
-		this.paciente = paciente;
+		
 	}
 
 	public Integer getId() {
@@ -64,13 +66,6 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
 
 	@Override
 	public int hashCode() {

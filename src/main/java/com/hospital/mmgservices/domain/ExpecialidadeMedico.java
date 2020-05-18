@@ -1,13 +1,15 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ExpecialidadeMedico implements Serializable {
@@ -21,14 +23,14 @@ public class ExpecialidadeMedico implements Serializable {
 	@Column(name="expecialidade", length = 50, nullable = true)
 	private String expecialidade;
 	
-	@OneToOne(mappedBy = "expecialidademedico")
-	private Medico medico;
+	@OneToMany(mappedBy = "expecialidademedico")
+	private List<Medico> medico = new ArrayList<>();
 	
 	public ExpecialidadeMedico() {
 		
 	}
 
-	public ExpecialidadeMedico(Integer id, String expecialidade, Medico medico) {
+	public ExpecialidadeMedico(Integer id, String expecialidade, List<Medico> medico) {
 		super();
 		this.id = id;
 		this.expecialidade = expecialidade;
@@ -51,11 +53,11 @@ public class ExpecialidadeMedico implements Serializable {
 		this.expecialidade = expecialidade;
 	}
 
-	public Medico getMedico() {
+	public List<Medico> getMedico() {
 		return medico;
 	}
 
-	public void setMedico(Medico medico) {
+	public void setMedico(List<Medico> medico) {
 		this.medico = medico;
 	}
 
@@ -83,6 +85,8 @@ public class ExpecialidadeMedico implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 	

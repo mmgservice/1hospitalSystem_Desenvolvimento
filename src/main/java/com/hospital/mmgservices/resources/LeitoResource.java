@@ -15,50 +15,47 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.hospital.mmgservices.domain.Cidade;
-import com.hospital.mmgservices.dto.CidadeDTO;
-import com.hospital.mmgservices.services.CidadeService;
+import com.hospital.mmgservices.domain.Leito;
+import com.hospital.mmgservices.dto.LeitoDTO;
+import com.hospital.mmgservices.services.LeitoService;
 
 @RestController
-@RequestMapping(value = "/cidades")
-public class CidadeResource {
-
-	// Criado Por Gustavo Teste Branch
-
+@RequestMapping(value="/leitos")
+public class LeitoResource {
+	
 	@Autowired
-	private CidadeService cidadeService;
-
+	private LeitoService leitoservice;
+	
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public ResponseEntity<Cidade> find(@PathVariable Integer id) {
-		Cidade obj = cidadeService.find(id);
+	public ResponseEntity<Leito> find(@PathVariable Integer id) {
+		Leito obj = leitoservice.find(id);
 		return ResponseEntity.ok().body(obj);
 	}	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CidadeDTO>> findAll() {
-		List<Cidade> list = cidadeService.findAll();
-		List<CidadeDTO> listDTO = list.stream().map(obj -> new CidadeDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<LeitoDTO>> findAll() {
+		List<Leito> list = leitoservice.findAll();
+		List<LeitoDTO> listDTO = list.stream().map(obj -> new LeitoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
-
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody CidadeDTO objDto) {
-		Cidade obj = cidadeService.fromDTO(objDto);
-		obj = cidadeService.insert(obj);
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody LeitoDTO objDto){
+		Leito obj = leitoservice.fromDTO(objDto);
+		obj = leitoservice.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(obj.getId()).toUri();
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody CidadeDTO objDto, @PathVariable Integer id) {
-		Cidade obj = cidadeService.fromDTO(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody LeitoDTO objDto, @PathVariable Integer id) {
+		Leito obj = leitoservice.fromDTO(objDto);
 		obj.setId(id);
-		obj = cidadeService.update(obj);
+		obj = leitoservice.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		cidadeService.delete(id);
+		leitoservice.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

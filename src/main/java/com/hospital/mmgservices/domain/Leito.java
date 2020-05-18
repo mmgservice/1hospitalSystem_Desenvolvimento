@@ -10,34 +10,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.hospital.mmgservices.domain.enums.StatusQuartoEnum;
+
 @Entity
-public class Medico implements Serializable {
+public class Leito implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "nome", length = 50, nullable = true)
-	private String nome;
-
-	@Column(name = "crm", length = 50, nullable = true)
-	private String crm;
+	@Column(name = "nomequarto", length = 50, nullable = true)
+	private String nomequarto;
 
 	@ManyToOne
-	@JoinColumn(name = "expecialidade_id")
-	private ExpecialidadeMedico expecialidademedico;
+	@JoinColumn(name = "quarto_id")
+	private Quarto quarto;
 
-	public Medico() {
+	private Integer statusquartoenum;
+	
+	public Leito() {
 
 	}
 
-	public Medico(Integer id, String nome, String crm, ExpecialidadeMedico expecialidademedico) {
+	public Leito(Integer id, String nomequarto, Quarto quarto, StatusQuartoEnum statusquartoenum) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.crm = crm;
-		this.expecialidademedico = expecialidademedico;
+		this.nomequarto = nomequarto;
+		this.quarto = quarto;
+		this.statusquartoenum = (statusquartoenum == null) ? null : statusquartoenum.getCod();
 	}
 
 	public Integer getId() {
@@ -48,28 +49,32 @@ public class Medico implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomequarto() {
+		return nomequarto;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomequarto(String nomequarto) {
+		this.nomequarto = nomequarto;
 	}
 
-	public String getCrm() {
-		return crm;
+	public Quarto getQuarto() {
+		return quarto;
 	}
 
-	public void setCrm(String crm) {
-		this.crm = crm;
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
-	public ExpecialidadeMedico getExpecialidademedico() {
-		return expecialidademedico;
+	public StatusQuartoEnum getTipo() {
+		return StatusQuartoEnum.toEnum(statusquartoenum);
+	}
+	
+	public Integer getStatusquartoenum() {
+		return statusquartoenum;
 	}
 
-	public void setExpecialidademedico(ExpecialidadeMedico expecialidademedico) {
-		this.expecialidademedico = expecialidademedico;
+	public void setStatusquartoenum(Integer statusquartoenum) {
+		this.statusquartoenum = statusquartoenum;
 	}
 
 	@Override
@@ -88,7 +93,7 @@ public class Medico implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Medico other = (Medico) obj;
+		Leito other = (Leito) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,6 +101,6 @@ public class Medico implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 	
 }

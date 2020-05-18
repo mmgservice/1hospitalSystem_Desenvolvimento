@@ -9,40 +9,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Estado implements Serializable{
-	
+public class Estado implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name= "nome", length = 50 , nullable = true)
+
+	@Column(name = "nome", length = 50, nullable = true)
 	private String nome;
-	
-	
+
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidade = new ArrayList<>();
-	
-	@ManyToOne
-	@JoinColumn(name = "pais_id")
-	private Pais pais;
 
 	public Estado() {
-		
-	}
 
-	public Estado(Integer id, String nome, List<Cidade> cidade, Pais pais) {
+	}	
+	
+	public Estado(Integer id, String nome, List<Cidade> cidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cidade = cidade;
-		this.pais = pais;
 	}
 
 
@@ -71,14 +63,6 @@ public class Estado implements Serializable{
 		this.cidade = cidade;
 	}
 
-	public Pais getPais() {
-		return pais;
-	}
-
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,7 +88,4 @@ public class Estado implements Serializable{
 		return true;
 	}
 
-	
-	
-	
 }

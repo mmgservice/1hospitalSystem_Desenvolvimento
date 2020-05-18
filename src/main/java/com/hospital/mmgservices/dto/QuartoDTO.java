@@ -2,25 +2,23 @@ package com.hospital.mmgservices.dto;
 
 import java.io.Serializable;
 
-import com.hospital.mmgservices.domain.Pais;
+import com.hospital.mmgservices.domain.Quarto;
 
-public class PaisDTO implements Serializable {
+public class QuartoDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nome;
-	private String sigla;
-	
-	public PaisDTO() {
-		
-	}
-	
-	public PaisDTO(Pais obj) {
-		id = obj.getId();
-		nome = obj.getNome();
-		sigla = obj.getSigla();
+
+	public QuartoDTO() {
+
 	}
 
+	public QuartoDTO(Quarto obj) {
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+	}
 
 	public Integer getId() {
 		return id;
@@ -38,14 +36,9 @@ public class PaisDTO implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getSigla() {
-		return sigla;
+	@Override
+	public String toString() {
+		return "QuartoDTO [id=" + id + ", nome=" + nome + "]";
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
-	}
-	
-   
-	
 }
