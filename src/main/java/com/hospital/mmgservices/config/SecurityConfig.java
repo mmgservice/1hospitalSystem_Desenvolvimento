@@ -29,7 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/quartos/**",
 			"/medicos/**",
 			"/expecialidademedicos/**",
-			"/residencia/**"
+			"/residencia/**",
+			"/medicamentos/**",
+			"/categoriamedicamentos/**",
+			"/expecialidadeenfermagem/**",
+			"/enfermagem/**",
+			"/farmacias/**"
 	};
 	
 	@Override

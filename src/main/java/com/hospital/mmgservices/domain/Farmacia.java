@@ -23,7 +23,7 @@ public class Farmacia implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "datasistema", nullable = true)
 	private Date datasistema;
 	
@@ -36,7 +36,7 @@ public class Farmacia implements Serializable{
 	@Column(name = "quantidadetotal", nullable = true)
 	private Double quantidadetotal;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "datavencimento", nullable = true)
 	private Date datavencimento;
 	
