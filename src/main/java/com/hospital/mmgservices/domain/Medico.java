@@ -1,6 +1,8 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Medico implements Serializable {
@@ -27,7 +30,13 @@ public class Medico implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "expecialidade_id")
 	private ExpecialidadeMedico expecialidademedico;
-
+	
+	@OneToMany(mappedBy = "medico")
+	private List<Exame> exame = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "medico")
+	private List<Prescricao> prescricao = new ArrayList<>();
+	
 	public Medico() {
 
 	}

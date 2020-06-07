@@ -43,6 +43,10 @@ public class Exame implements Serializable {
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 	
+	@ManyToOne
+	@JoinColumn()
+	private Medico medico;
+	
 	
 	public Exame() {
 		

@@ -32,6 +32,7 @@ public class Medicamento implements Serializable{
 	@OneToMany(mappedBy = "medicamento")
 	private List<Farmacia> farmacia = new ArrayList<>();
 	
+	
 	public Medicamento() {
 		
 	}

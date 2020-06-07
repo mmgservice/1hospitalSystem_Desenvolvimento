@@ -34,6 +34,9 @@ public class Enfermagem implements Serializable {
 	@OneToMany(mappedBy = "enfermagem")
 	private List<EvolucaoEnfermagem> evolucaoenfermagem = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "enfermagem")
+	private List<Prescricao> prescricao = new ArrayList<>();
+	
 	public Enfermagem() {
 
 	}
