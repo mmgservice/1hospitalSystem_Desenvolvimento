@@ -1,6 +1,9 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Enfermagem implements Serializable {
@@ -27,16 +31,21 @@ public class Enfermagem implements Serializable {
 	@JoinColumn(name = "expecialidade_id")
 	private ExpecialidadeEnfermagem expecialidadeenfermagem;
 
+	@OneToMany(mappedBy = "enfermagem")
+	private List<EvolucaoEnfermagem> evolucaoenfermagem = new ArrayList<>();
+	
 	public Enfermagem() {
 
 	}
 
-	public Enfermagem(Integer id, String nome, String coren, ExpecialidadeEnfermagem expecialidadeenfermagem) {
+	public Enfermagem(Integer id, String nome, String coren, ExpecialidadeEnfermagem expecialidadeenfermagem,
+			List<EvolucaoEnfermagem> evolucaoenfermagem) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.coren = coren;
 		this.expecialidadeenfermagem = expecialidadeenfermagem;
+		this.evolucaoenfermagem = evolucaoenfermagem;
 	}
 
 	public Integer getId() {
@@ -69,6 +78,14 @@ public class Enfermagem implements Serializable {
 
 	public void setExpecialidadeenfermagem(ExpecialidadeEnfermagem expecialidadeenfermagem) {
 		this.expecialidadeenfermagem = expecialidadeenfermagem;
+	}
+
+	public List<EvolucaoEnfermagem> getEvolucaoenfermagem() {
+		return evolucaoenfermagem;
+	}
+
+	public void setEvolucaoenfermagem(List<EvolucaoEnfermagem> evolucaoenfermagem) {
+		this.evolucaoenfermagem = evolucaoenfermagem;
 	}
 
 	@Override

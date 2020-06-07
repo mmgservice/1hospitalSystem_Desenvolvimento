@@ -2,22 +2,18 @@ package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hospital.mmgservices.domain.enums.ResidenciaEnum;
 
 @Entity
 public class Paciente implements Serializable {
@@ -63,7 +59,7 @@ public class Paciente implements Serializable {
 	private String complemento;
 
 	@Column(name = "cep", length = 8, nullable = true)
-	private Integer cep;
+	private String cep;
 
 	@Column(name = "bairro", length = 60, nullable = true)
 	private String bairro;
@@ -71,10 +67,6 @@ public class Paciente implements Serializable {
 	@Column(name = "estadocivil", length = 20, nullable = true)
 	private String estadocivil;
 
-	@ElementCollection
-	@CollectionTable(name = "telefone")
-	@Column(length = 15, nullable = true)
-	private Set<String> telefones = new HashSet<String>();
 
 	@Column(name = "nomedamae", length = 50, nullable = true)
 	private String nomedamae;
@@ -82,33 +74,30 @@ public class Paciente implements Serializable {
 	@Column(name = "nomedopai", length = 50, nullable = true)
 	private String nomedopai;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "cidade_id")
+	@JsonIgnore
 	private Cidade cidade;
 
-	@OneToOne
-	@JoinColumn(name = "estado_id")
-	private Estado estado;
-
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "alergia_id")
+	@JsonIgnore
 	private Alergia alergia;
 
-	@OneToOne
-	@JoinColumn(name = "residencia_id")
-	private Residencia residencia;
+	@Column(name = "obs", nullable = true)
+	private String obs;
+	
+	private Integer ResidenciaEnum;
 
-	@OneToMany(mappedBy = "paciente")
-	private List<Exame> exame;
 
 	public Paciente() {
 
 	}
-
+	
 	public Paciente(Integer id, Date datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
-			String rg, String cpf, String sexo, String cor, String endereco, String complemento, Integer cep,
-			String bairro, String estadocivil, Set<String> telefones, String nomedamae, String nomedopai, Cidade cidade,
-			Estado estado, Alergia alergia, Residencia residencia, List<Exame> exame) {
+			String rg, String cpf, String sexo, String cor, String endereco, String complemento, String cep,
+			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade,
+			Alergia alergia, String obs, ResidenciaEnum residenciaEnum) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
@@ -125,15 +114,16 @@ public class Paciente implements Serializable {
 		this.cep = cep;
 		this.bairro = bairro;
 		this.estadocivil = estadocivil;
-		this.telefones = telefones;
 		this.nomedamae = nomedamae;
 		this.nomedopai = nomedopai;
 		this.cidade = cidade;
-		this.estado = estado;
 		this.alergia = alergia;
-		this.residencia = residencia;
-		this.exame = exame;
+		this.obs = obs;
+		this.ResidenciaEnum = (residenciaEnum == null) ? null : residenciaEnum.getCod();
 	}
+
+
+
 
 	public Integer getId() {
 		return id;
@@ -231,11 +221,11 @@ public class Paciente implements Serializable {
 		this.complemento = complemento;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -253,14 +243,6 @@ public class Paciente implements Serializable {
 
 	public void setEstadocivil(String estadocivil) {
 		this.estadocivil = estadocivil;
-	}
-
-	public Set<String> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Set<String> telefones) {
-		this.telefones = telefones;
 	}
 
 	public String getNomedamae() {
@@ -287,14 +269,6 @@ public class Paciente implements Serializable {
 		this.cidade = cidade;
 	}
 
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
 	public Alergia getAlergia() {
 		return alergia;
 	}
@@ -303,21 +277,22 @@ public class Paciente implements Serializable {
 		this.alergia = alergia;
 	}
 
-	public Residencia getResidencia() {
-		return residencia;
+	public String getObs() {
+		return obs;
 	}
 
-	public void setResidencia(Residencia residencia) {
-		this.residencia = residencia;
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
 
-	public List<Exame> getExame() {
-		return exame;
+	public Integer getResidenciaEnum() {
+		return ResidenciaEnum;
 	}
 
-	public void setExame(List<Exame> exame) {
-		this.exame = exame;
+	public void setResidenciaEnum(Integer residenciaEnum) {
+		ResidenciaEnum = residenciaEnum;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -344,4 +319,6 @@ public class Paciente implements Serializable {
 		return true;
 	}
 
+	
+	
 }

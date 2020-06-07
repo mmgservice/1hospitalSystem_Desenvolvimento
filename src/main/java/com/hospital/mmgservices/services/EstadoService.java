@@ -34,9 +34,7 @@ public class EstadoService {
 		obj.setId(null);
 		return estadoRepository.save(obj);
 	}
-	public Estado fromDTO(Estado objDto) {
-		return new Estado(objDto.getId(), objDto.getNome(),objDto.getCidade());
-	}
+	
 	
 	public Estado find(Integer id) {
 		Optional<Estado> obj = estadoRepository.findById(id);
@@ -59,5 +57,8 @@ public class EstadoService {
 	
 	public Estado fromDTO(EstadoDTO objDto) {
 		return new Estado(objDto.getId(),objDto.getNome(),null);
+	}
+	public Estado fromDTO(Estado objDto) {
+		return new Estado(objDto.getId(), objDto.getNome(),objDto.getCidade());
 	}
 }

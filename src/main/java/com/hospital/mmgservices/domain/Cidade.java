@@ -1,6 +1,8 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,17 +32,19 @@ public class Cidade implements Serializable {
 	@JsonIgnore
 	private Estado estado;
 
-
+	@OneToMany(mappedBy = "cidade")
+	private List<Paciente> paciente = new ArrayList<>();
+	
 	public Cidade() {
 
 	}
 
-	public Cidade(Integer id, String nome, Estado estado) {
+	public Cidade(Integer id, String nome, Estado estado, List<Paciente> paciente) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
-		
+		this.paciente = paciente;
 	}
 
 	public Integer getId() {
@@ -66,6 +71,13 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
+	public List<Paciente> getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(List<Paciente> paciente) {
+		this.paciente = paciente;
+	}
 
 	@Override
 	public int hashCode() {
@@ -91,5 +103,8 @@ public class Cidade implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
+	
 }

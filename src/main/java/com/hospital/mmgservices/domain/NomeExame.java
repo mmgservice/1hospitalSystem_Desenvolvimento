@@ -25,7 +25,7 @@ public class NomeExame implements Serializable{
 	@Column(name = "valor", nullable = true)
 	private BigDecimal valor;
 	
-	@ManyToOne
+	@ManyToOne	
 	@JoinColumn(name = "categoriaexame_id")
 	private CategoriaExame categoriaexame;
 	

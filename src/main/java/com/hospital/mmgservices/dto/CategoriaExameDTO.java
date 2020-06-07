@@ -2,38 +2,43 @@ package com.hospital.mmgservices.dto;
 
 import java.io.Serializable;
 
-import com.hospital.mmgservices.domain.Alergia;
+import com.hospital.mmgservices.domain.CategoriaExame;
 
-public class AlergiaDTO implements Serializable {
+public class CategoriaExameDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String nome;
 
-	public AlergiaDTO() {
+	public CategoriaExameDTO() {
 
 	}
-	public AlergiaDTO(Alergia obj) {
-		id = obj.getId();
-		nome = obj.getNome();
+
+	public CategoriaExameDTO(CategoriaExame categoriaExame) {
+		this.id = categoriaExame.getId();
+		this.nome = categoriaExame.getNome();
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	@Override
 	public String toString() {
-		return "AlergiaDTO [id=" + id + ", nome=" + nome + "]";
+		return "CategoriaExameDTO [id=" + id + ", nome=" + nome + "]";
 	}
 
-	
-	
 }

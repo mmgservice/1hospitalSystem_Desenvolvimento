@@ -2,7 +2,6 @@ package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +32,7 @@ public class CategoriaExame implements Serializable{
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.nomeexame = nomeexame;
+		this.nomeexame = nomeexame; 	 	
 	}
 
 	public Integer getId() {

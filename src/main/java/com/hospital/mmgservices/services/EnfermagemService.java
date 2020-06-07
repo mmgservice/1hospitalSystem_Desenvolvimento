@@ -1,8 +1,11 @@
 package com.hospital.mmgservices.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.hospital.mmgservices.domain.Enfermagem;
@@ -30,6 +33,29 @@ public class EnfermagemService {
 	}
 
 	public Enfermagem fromDTO(EnfermagemDTO objDto) {
-		return new Enfermagem(objDto.getId(), objDto.getNome(), objDto.getCoren(),new ExpecialidadeEnfermagem(objDto.getExpecialidadeId(), null, null));
+		return new Enfermagem(objDto.getId(), objDto.getNome(), objDto.getCoren(),new ExpecialidadeEnfermagem(objDto.getExpecialidadeId(), null, null),null);
+	}
+	
+	public Enfermagem find(Integer id) {
+		Optional<Enfermagem> obj = enfermagemRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Enfermagem.class.getName(), null));
+	}
+	private void updateData(Enfermagem newObj, Enfermagem obj) {
+		newObj.setNome(obj.getNome());
+	}
+
+	public void delete(Integer id) {
+		find(id);
+			try {
+				enfermagemRepository.deleteById(id);
+			}catch(DataIntegrityViolationException e) {
+				throw new DataIntegrityViolationException("Não possilvel exluir uma Enfermagem");
+			}
+	}
+	public Enfermagem update(Enfermagem obj) {
+		Enfermagem newobj = find(obj.getId());
+		updateData(newobj, obj);
+		return enfermagemRepository.save(newobj);
 	}
 }

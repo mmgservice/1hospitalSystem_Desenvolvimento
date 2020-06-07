@@ -1,6 +1,8 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Medicamento implements Serializable{
@@ -27,20 +29,22 @@ public class Medicamento implements Serializable{
 	@JoinColumn(name= "categoriaMedicamento_id")
 	private CategoriaMedicamento categoriamedicamento;
 	
-	@OneToOne(mappedBy = "medicamento")
-	private Farmacia farmacia;
+	@OneToMany(mappedBy = "medicamento")
+	private List<Farmacia> farmacia = new ArrayList<>();
 	
 	public Medicamento() {
 		
 	}
 
-	public Medicamento(Integer id, String nome, CategoriaMedicamento categoriamedicamento, Farmacia farmacia) {
+	public Medicamento(Integer id, String nome, CategoriaMedicamento categoriamedicamento, List<Farmacia> farmacia) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.categoriamedicamento = categoriamedicamento;
 		this.farmacia = farmacia;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -66,13 +70,40 @@ public class Medicamento implements Serializable{
 		this.categoriamedicamento = categoriamedicamento;
 	}
 
-	public Farmacia getFarmacia() {
+	public List<Farmacia> getFarmacia() {
 		return farmacia;
 	}
 
-	public void setFarmacia(Farmacia farmacia) {
+	public void setFarmacia(List<Farmacia> farmacia) {
 		this.farmacia = farmacia;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medicamento other = (Medicamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	
+	
 	
 }
