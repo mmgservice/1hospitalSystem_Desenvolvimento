@@ -2,6 +2,8 @@ package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -58,7 +61,7 @@ public class Paciente implements Serializable {
 	@Column(name = "complemento", length = 50, nullable = false)
 	private String complemento;
 
-	@Column(name = "cep", length = 8, nullable = true)
+	@Column(name = "cep", length = 15, nullable = true)
 	private String cep;
 
 	@Column(name = "bairro", length = 60, nullable = true)
@@ -66,7 +69,6 @@ public class Paciente implements Serializable {
 
 	@Column(name = "estadocivil", length = 20, nullable = true)
 	private String estadocivil;
-
 
 	@Column(name = "nomedamae", length = 50, nullable = true)
 	private String nomedamae;
@@ -86,18 +88,25 @@ public class Paciente implements Serializable {
 
 	@Column(name = "obs", nullable = true)
 	private String obs;
-	
+
 	private Integer ResidenciaEnum;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "paciente")
+	private List<Internacao> internacao = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "paciente")
+	private List<Telefone> telefone = new ArrayList<Telefone>();
 
 	public Paciente() {
 
 	}
-	
+
 	public Paciente(Integer id, Date datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
 			String rg, String cpf, String sexo, String cor, String endereco, String complemento, String cep,
-			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade,
-			Alergia alergia, String obs, ResidenciaEnum residenciaEnum) {
+			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade, Alergia alergia,
+			String obs, ResidenciaEnum residenciaEnum, List<Internacao> internacao, List<Telefone> telefone) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
@@ -119,11 +128,10 @@ public class Paciente implements Serializable {
 		this.cidade = cidade;
 		this.alergia = alergia;
 		this.obs = obs;
-		this.ResidenciaEnum = (residenciaEnum == null) ? null : residenciaEnum.getCod();
+		ResidenciaEnum = (residenciaEnum == null) ? null : residenciaEnum.getCod();
+		this.internacao = internacao;
+		this.telefone = telefone;
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -293,6 +301,21 @@ public class Paciente implements Serializable {
 		ResidenciaEnum = residenciaEnum;
 	}
 
+	public List<Internacao> getInternacao() {
+		return internacao;
+	}
+
+	public void setInternacao(List<Internacao> internacao) {
+		this.internacao = internacao;
+	}
+
+	public List<Telefone> getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(List<Telefone> telefone) {
+		this.telefone = telefone;
+	}
 
 	@Override
 	public int hashCode() {
@@ -319,6 +342,4 @@ public class Paciente implements Serializable {
 		return true;
 	}
 
-	
-	
 }

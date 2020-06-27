@@ -1,6 +1,7 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,20 +21,21 @@ public class CategoriaMedicamento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name= "descricao", length = 50, nullable = true)
-	private String descricao;
+	@Column(name= "nome", length = 50, nullable = true)
+	private String nome;
+	
 	
 	@OneToMany(mappedBy = "categoriamedicamento")
-	private List<Medicamento> medicamento;
+	private List<Medicamento> medicamento = new ArrayList<>();
 	
 	public CategoriaMedicamento() {
 		
 	}
 
-	public CategoriaMedicamento(Integer id, String descricao, List<Medicamento> medicamento) {
+	public CategoriaMedicamento(Integer id, String nome, List<Medicamento> medicamento) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
+		this.nome = nome;
 		this.medicamento = medicamento;
 	}
 
@@ -45,12 +47,12 @@ public class CategoriaMedicamento implements Serializable{
 		this.id = id;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public List<Medicamento> getMedicamento() {
@@ -86,7 +88,6 @@ public class CategoriaMedicamento implements Serializable{
 		return true;
 	}
 
-	
-	
+
 }
 

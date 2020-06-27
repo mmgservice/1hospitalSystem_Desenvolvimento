@@ -11,7 +11,7 @@ public class LeitoDTO implements Serializable {
 	private Integer id;
 	private String nomequarto;
 	private Integer statusquartoenum;
-	private Integer quartoId;
+	private QuartoDTO quarto;
 
 	public LeitoDTO() {
 
@@ -21,7 +21,7 @@ public class LeitoDTO implements Serializable {
 		this.id = obj.getId();
 		this.nomequarto = obj.getNomequarto();
 		this.statusquartoenum = obj.getStatusquartoenum();
-		this.quartoId = obj.getQuarto().getId();
+		this.quarto = new QuartoDTO(obj.getQuarto());
 	}
 
 	public Integer getId() {
@@ -40,14 +40,13 @@ public class LeitoDTO implements Serializable {
 		this.nomequarto = nomequarto;
 	}
 
-	public Integer getQuartoId() {
-		return quartoId;
+	public QuartoDTO getQuarto() {
+		return quarto;
 	}
 
-	public void setQuartoId(Integer quartoId) {
-		this.quartoId = quartoId;
+	public void setQuarto(QuartoDTO quarto) {
+		this.quarto = quarto;
 	}
-	
 
 	public Integer getStatusquartoenum() {
 		return statusquartoenum;
@@ -59,8 +58,10 @@ public class LeitoDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LeitoDTO [id=" + id + ", nomequarto=" + nomequarto + ", quartoId=" + quartoId + "]";
+		return "LeitoDTO [id=" + id + ", nomequarto=" + nomequarto + ", statusquartoenum=" + statusquartoenum
+				+ ", quarto=" + quarto + "]";
 	}
+
 	
 	
 

@@ -12,17 +12,17 @@ public class NomeExameDTO implements Serializable {
 	private Integer id;
 	private String nomedoexame;
 	private BigDecimal valor;
-	private Integer categoriaExameId;
+	private CategoriaExameDTO categoriaExame;
 
 	public NomeExameDTO() {
 
 	}
 
 	public NomeExameDTO(NomeExame obj) {
-		id = obj.getId();
-		nomedoexame = obj.getNomedoexame();
-		valor = obj.getValor();
-		categoriaExameId = obj.getCategoriaexame().getId();
+		this.id = obj.getId();
+		this.nomedoexame = obj.getNomedoexame();
+		this.valor = obj.getValor();
+		this.categoriaExame = new CategoriaExameDTO(obj.getCategoriaexame());
 	}
 
 	public Integer getId() {
@@ -49,12 +49,12 @@ public class NomeExameDTO implements Serializable {
 		this.valor = valor;
 	}
 
-	public Integer getCategoriaExameId() {
-		return categoriaExameId;
+	public CategoriaExameDTO getCategoriaExame() {
+		return categoriaExame;
 	}
 
-	public void setCategoriaExameId(Integer categoriaExameId) {
-		this.categoriaExameId = categoriaExameId;
+	public void setCategoriaExame(CategoriaExameDTO categoriaExame) {
+		this.categoriaExame = categoriaExame;
 	}
-
+	
 }

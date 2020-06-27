@@ -24,32 +24,46 @@ import com.hospital.mmgservices.services.ExpecialidadeEnfermagemService;
 @CrossOrigin("*")
 @RequestMapping(value = "/expecialidadeenfermagem")
 public class ExpecialidadeEnfermagemResource {
-    
+
 	@Autowired
 	private ExpecialidadeEnfermagemService expecialidadeEnfermagemService;
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ExpecialidadeEnfermagem objDto) {
 		ExpecialidadeEnfermagem obj = expecialidadeEnfermagemService.fromDTO(objDto);
 		obj = expecialidadeEnfermagemService.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ExpecialidadeEnfermagemDTO>> findAll() {
 		List<ExpecialidadeEnfermagem> list = expecialidadeEnfermagemService.findAll();
-		List<ExpecialidadeEnfermagemDTO> listDTO = list.stream().map(obj -> new ExpecialidadeEnfermagemDTO(obj)).collect(Collectors.toList());
+		List<ExpecialidadeEnfermagemDTO> listDTO = list.stream().map(obj -> new ExpecialidadeEnfermagemDTO(obj))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ExpecialidadeEnfermagemDTO objDto, @PathVariable Integer id) {
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	public ResponseEntity<ExpecialidadeEnfermagem> find(@PathVariable Integer id) {
+		ExpecialidadeEnfermagem obj = expecialidadeEnfermagemService.find(id);
+		return ResponseEntity.ok().body(obj);
+	}	
+	
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ExpecialidadeEnfermagemDTO objDto,
+			@PathVariable Integer id) {
 		ExpecialidadeEnfermagem obj = expecialidadeEnfermagemService.fromDTO(objDto);
 		obj.setId(id);
 		obj = expecialidadeEnfermagemService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-	
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		expecialidadeEnfermagemService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }

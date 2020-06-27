@@ -33,7 +33,7 @@ public class NomeExameService {
 
 	public NomeExame fromDTO(NomeExameDTO objDto) {
 		NomeExame nomeExame = new NomeExame(objDto.getId(), objDto.getNomedoexame(), objDto.getValor(),
-				new CategoriaExame(objDto.getCategoriaExameId(), null, null));
+				new CategoriaExame(objDto.getCategoriaExame().getId(), objDto.getNomedoexame(), null));
 		return nomeExame;
 	}
 

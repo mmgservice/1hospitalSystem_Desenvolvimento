@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Medico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,26 +29,35 @@ public class Medico implements Serializable {
 	@Column(name = "crm", length = 50, nullable = true)
 	private String crm;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "expecialidade_id")
 	private ExpecialidadeMedico expecialidademedico;
-	
+
 	@OneToMany(mappedBy = "medico")
 	private List<Exame> exame = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "medico")
 	private List<Prescricao> prescricao = new ArrayList<>();
-	
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "medico")
+	private List<EvolucaoMedico> evolucaoMedico = new ArrayList<>();
+
 	public Medico() {
 
 	}
 
-	public Medico(Integer id, String nome, String crm, ExpecialidadeMedico expecialidademedico) {
+	public Medico(Integer id, String nome, String crm, ExpecialidadeMedico expecialidademedico, List<Exame> exame,
+			List<Prescricao> prescricao, List<EvolucaoMedico> evolucaoMedico) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.crm = crm;
 		this.expecialidademedico = expecialidademedico;
+		this.exame = exame;
+		this.prescricao = prescricao;
+		this.evolucaoMedico = evolucaoMedico;
 	}
 
 	public Integer getId() {
@@ -81,6 +92,30 @@ public class Medico implements Serializable {
 		this.expecialidademedico = expecialidademedico;
 	}
 
+	public List<Exame> getExame() {
+		return exame;
+	}
+
+	public void setExame(List<Exame> exame) {
+		this.exame = exame;
+	}
+
+	public List<Prescricao> getPrescricao() {
+		return prescricao;
+	}
+
+	public void setPrescricao(List<Prescricao> prescricao) {
+		this.prescricao = prescricao;
+	}
+
+	public List<EvolucaoMedico> getEvolucaoMedico() {
+		return evolucaoMedico;
+	}
+
+	public void setEvolucaoMedico(List<EvolucaoMedico> evolucaoMedico) {
+		this.evolucaoMedico = evolucaoMedico;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,5 +141,4 @@ public class Medico implements Serializable {
 		return true;
 	}
 
-	
 }

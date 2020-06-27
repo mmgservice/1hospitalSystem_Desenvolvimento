@@ -9,7 +9,7 @@ public class MedicamentoDTO implements Serializable{
 	
 	private Integer id;
 	private String nome;
-	private Integer categoriaId;
+	private CategoriaMedicamentoDTO categoriamedicamento;
 	
 	public MedicamentoDTO() {
 		
@@ -17,7 +17,7 @@ public class MedicamentoDTO implements Serializable{
 	public MedicamentoDTO(Medicamento obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
-		this.categoriaId = obj.getCategoriamedicamento().getId();
+		this.categoriamedicamento = new CategoriaMedicamentoDTO(obj.getCategoriamedicamento());
 	}
 	public Integer getId() {
 		return id;
@@ -31,16 +31,17 @@ public class MedicamentoDTO implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Integer getCategoriaId() {
-		return categoriaId;
+	public CategoriaMedicamentoDTO getCategoriamedicamento() {
+		return categoriamedicamento;
 	}
-	public void setCategoriaId(Integer categoriaId) {
-		this.categoriaId = categoriaId;
+	public void setCategoriamedicamento(CategoriaMedicamentoDTO categoriamedicamento) {
+		this.categoriamedicamento = categoriamedicamento;
 	}
 	@Override
 	public String toString() {
-		return "MedicamentoDTO [id=" + id + ", nome=" + nome + ", categoriaId=" + categoriaId + "]";
+		return "MedicamentoDTO [id=" + id + ", nome=" + nome + ", categoriamedicamento=" + categoriamedicamento + "]";
 	}
+
 	
 	
 }

@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Enfermagem implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,13 +29,16 @@ public class Enfermagem implements Serializable {
 	@Column(name = "coren", length = 100, nullable = true)
 	private String coren;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "expecialidade_id")
 	private ExpecialidadeEnfermagem expecialidadeenfermagem;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "enfermagem")
 	private List<EvolucaoEnfermagem> evolucaoenfermagem = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "enfermagem")
 	private List<Prescricao> prescricao = new ArrayList<>();
 	

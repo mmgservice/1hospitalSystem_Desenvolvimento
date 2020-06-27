@@ -10,17 +10,17 @@ public class EnfermagemDTO implements Serializable {
 	private Integer id;
 	private String nome;
 	private String coren;
-	private Integer expecialidadeId;
+	private ExpecialidadeEnfermagemDTO expecialidade;
 
 	public EnfermagemDTO() {
 
 	}
 
 	public EnfermagemDTO(Enfermagem obj) {
-		id = obj.getId();
-		nome = obj.getNome();
-		coren = obj.getCoren();
-		expecialidadeId = obj.getExpecialidadeenfermagem().getId();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.coren = obj.getCoren();
+		this.expecialidade = new ExpecialidadeEnfermagemDTO(obj.getExpecialidadeenfermagem());
 	}
 
 	public Integer getId() {
@@ -47,17 +47,18 @@ public class EnfermagemDTO implements Serializable {
 		this.coren = coren;
 	}
 
-	public Integer getExpecialidadeId() {
-		return expecialidadeId;
+	public ExpecialidadeEnfermagemDTO getExpecialidade() {
+		return expecialidade;
 	}
 
-	public void setExpecialidadeId(Integer expecialidadeId) {
-		this.expecialidadeId = expecialidadeId;
+	public void setExpecialidade(ExpecialidadeEnfermagemDTO expecialidade) {
+		this.expecialidade = expecialidade;
 	}
 
 	@Override
 	public String toString() {
-		return "EnfermeiroDTO [id=" + id + ", nome=" + nome + ", crm=" + coren + ", expecialidadeId=" + expecialidadeId + "]";
+		return "EnfermagemDTO [id=" + id + ", nome=" + nome + ", coren=" + coren + ", expecialidade=" + expecialidade
+				+ "]";
 	}
 
 }

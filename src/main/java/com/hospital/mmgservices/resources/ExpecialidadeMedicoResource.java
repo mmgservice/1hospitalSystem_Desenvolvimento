@@ -29,26 +29,42 @@ public class ExpecialidadeMedicoResource {
 
 	@Autowired
 	private ExpecialidadeMedicoService expecialidademedicoservice;
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ExpecialidadeMedico objDto) {
 		ExpecialidadeMedico obj = expecialidademedicoservice.fromDTO(objDto);
 		obj = expecialidademedicoservice.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-	@RequestMapping(value="/{id}",method= RequestMethod.GET)
-	public ResponseEntity<ExpecialidadeMedico> find (@PathVariable Integer id) throws ObjectNotFoundException{
-		 ExpecialidadeMedico obj = expecialidademedicoservice.find(id);
-		 return ResponseEntity.ok().body(obj);
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<ExpecialidadeMedico> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		ExpecialidadeMedico obj = expecialidademedicoservice.find(id);
+		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ExpecialidadeMedicoDTO>> findAll() {
 		List<ExpecialidadeMedico> list = expecialidademedicoservice.findAll();
-		List<ExpecialidadeMedicoDTO> listDTO = list.stream().map(obj -> new ExpecialidadeMedicoDTO(obj)).collect(Collectors.toList());
+		List<ExpecialidadeMedicoDTO> listDTO = list.stream().map(obj -> new ExpecialidadeMedicoDTO(obj))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
-	
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid @RequestBody ExpecialidadeMedicoDTO objDto, @PathVariable Integer id)
+			throws ObjectNotFoundException {
+		ExpecialidadeMedico obj = expecialidademedicoservice.fromDTO(objDto);
+		obj.setId(id);
+		obj = expecialidademedicoservice.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) throws ObjectNotFoundException {
+		expecialidademedicoservice.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }

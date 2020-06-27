@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.hospital.mmgservices.domain.ExpecialidadeEnfermagem;
@@ -30,6 +31,16 @@ public class ExpecialidadeEnfermagemService {
 		ExpecialidadeEnfermagem newObj = find(obj.getId());
 		updateData(newObj,obj);
 		return expecialidadeEnfermagemRepository.save(newObj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			expecialidadeEnfermagemRepository.deleteById(id);
+		}
+		catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("Não possivel excluir este Enfermeiro(a)");
+		}
 	}
 	
 	public void updateData(ExpecialidadeEnfermagem newObj, ExpecialidadeEnfermagem obj) {

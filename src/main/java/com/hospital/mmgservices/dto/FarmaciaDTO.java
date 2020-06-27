@@ -18,7 +18,7 @@ public class FarmaciaDTO implements Serializable{
 	private Date datavencimento;
 	private BigDecimal valor;
 	private BigDecimal valortotal;
-	private Integer medicamentoId;
+	private MedicamentoDTO medicamento;
 	
 	public FarmaciaDTO(){
 		
@@ -32,7 +32,7 @@ public class FarmaciaDTO implements Serializable{
 		this.datavencimento = obj.getDatavencimento();
 		this.valor = obj.getValor();
 		this.valortotal = obj.getValortotal();
-		this.medicamentoId = obj.getMedicamento().getId();
+		this.medicamento = new MedicamentoDTO(obj.getMedicamento());
 	}
 	
 	public Integer getId() {
@@ -83,18 +83,20 @@ public class FarmaciaDTO implements Serializable{
 	public void setValortotal(BigDecimal valortotal) {
 		this.valortotal = valortotal;
 	}
-	public Integer getMedicamentoId() {
-		return medicamentoId;
+	public MedicamentoDTO getMedicamento() {
+		return medicamento;
 	}
-	public void setMedicamentoId(Integer medicamentoId) {
-		this.medicamentoId = medicamentoId;
+	public void setMedicamento(MedicamentoDTO medicamento) {
+		this.medicamento = medicamento;
 	}
 	@Override
 	public String toString() {
 		return "FarmaciaDTO [id=" + id + ", datasistema=" + datasistema + ", dosagem=" + dosagem + ", quantidade="
 				+ quantidade + ", quantidadetotal=" + quantidadetotal + ", datavencimento=" + datavencimento
-				+ ", valor=" + valor + ", valortotal=" + valortotal + ", medicamentoId=" + medicamentoId + "]";
+				+ ", valor=" + valor + ", valortotal=" + valortotal + ", medicamento=" + medicamento + "]";
 	}
+	
+	
 	
 	
 }

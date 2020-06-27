@@ -22,7 +22,7 @@ import com.hospital.mmgservices.services.FarmaciaService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value="/farmacias")
+@RequestMapping(value="/farmacia")
 public class FarmaciaResource {
 
 	@Autowired

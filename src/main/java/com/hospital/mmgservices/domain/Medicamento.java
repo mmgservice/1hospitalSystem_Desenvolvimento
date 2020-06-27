@@ -25,8 +25,8 @@ public class Medicamento implements Serializable{
 	@Column(name = "nome", length = 100 , nullable = true)
 	private String nome;
 	
-	@ManyToOne
-	@JoinColumn(name= "categoriaMedicamento_id")
+	@ManyToOne 
+	@JoinColumn(name= "categoriaMedicamento_id" )
 	private CategoriaMedicamento categoriamedicamento;
 	
 	@OneToMany(mappedBy = "medicamento")
@@ -51,33 +51,41 @@ public class Medicamento implements Serializable{
 		return id;
 	}
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public String getNome() {
 		return nome;
 	}
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	public CategoriaMedicamento getCategoriamedicamento() {
 		return categoriamedicamento;
 	}
 
+
 	public void setCategoriamedicamento(CategoriaMedicamento categoriamedicamento) {
 		this.categoriamedicamento = categoriamedicamento;
 	}
+
 
 	public List<Farmacia> getFarmacia() {
 		return farmacia;
 	}
 
+
 	public void setFarmacia(List<Farmacia> farmacia) {
 		this.farmacia = farmacia;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -86,6 +94,7 @@ public class Medicamento implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -104,6 +113,8 @@ public class Medicamento implements Serializable{
 		return true;
 	}
 
+	
+	
 	
 	
 	

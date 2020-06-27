@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.hospital.mmgservices.domain.CategoriaMedicamento;
-import com.hospital.mmgservices.domain.EvolucaoEnfermagem;
 import com.hospital.mmgservices.dto.CategoriaMedicamentoDTO;
-import com.hospital.mmgservices.dto.EvolucaoEnfermagemDTO;
 import com.hospital.mmgservices.services.CategoriaMedicamentoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;

@@ -25,6 +25,7 @@ public class ExpecialidadeMedico implements Serializable {
 	
 	@OneToMany(mappedBy = "expecialidademedico")
 	private List<Medico> medico = new ArrayList<>();
+
 	
 	public ExpecialidadeMedico() {
 		

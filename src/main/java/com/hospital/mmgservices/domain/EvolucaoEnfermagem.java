@@ -32,6 +32,9 @@ public class EvolucaoEnfermagem implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "enfermagem_id")
 	private Enfermagem enfermagem;
+	
+	//@OneToMany(mappedBy = "evolucaoEnfermagem")
+	//private List<Prontuario> prontuario = new ArrayList<>();
 
 	public EvolucaoEnfermagem() {
 

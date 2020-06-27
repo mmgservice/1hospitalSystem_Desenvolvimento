@@ -21,37 +21,37 @@ public class Exame implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "datasistema", nullable = true)
 	private Date datasistema;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "dataexame", nullable = true)
 	private Date dataexame;
-	
-	
+
 	@ManyToOne
-    @JoinColumn(name = "nomeexame_id")
+	@JoinColumn(name = "nomeexame_id")
 	private NomeExame nomeexame;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "statusexame_id")
 	private StatusExame statusexame;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
-	
+
 	@ManyToOne
-	@JoinColumn()
+	@JoinColumn(name = "exame_id")
 	private Medico medico;
 	
-	
-	public Exame() {
-		
-	}
+	//@OneToMany(mappedBy = "exame")
+	//private List<Prontuario> prontuario = new ArrayList<>();
 
+	public Exame() {
+
+	}
 
 	public Exame(Integer id, Date datasistema, Date dataexame, NomeExame nomeexame, StatusExame statusexame,
 			Paciente paciente) {
@@ -64,66 +64,53 @@ public class Exame implements Serializable {
 		this.paciente = paciente;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public Date getDatasistema() {
 		return datasistema;
 	}
-
 
 	public void setDatasistema(Date datasistema) {
 		this.datasistema = datasistema;
 	}
 
-
 	public Date getDataexame() {
 		return dataexame;
 	}
-
 
 	public void setDataexame(Date dataexame) {
 		this.dataexame = dataexame;
 	}
 
-
 	public NomeExame getNomeexame() {
 		return nomeexame;
 	}
-
 
 	public void setNomeexame(NomeExame nomeexame) {
 		this.nomeexame = nomeexame;
 	}
 
-
 	public StatusExame getStatusexame() {
 		return statusexame;
 	}
-
 
 	public void setStatusexame(StatusExame statusexame) {
 		this.statusexame = statusexame;
 	}
 
-
 	public Paciente getPaciente() {
 		return paciente;
 	}
 
-
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -132,7 +119,6 @@ public class Exame implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -150,6 +136,5 @@ public class Exame implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }

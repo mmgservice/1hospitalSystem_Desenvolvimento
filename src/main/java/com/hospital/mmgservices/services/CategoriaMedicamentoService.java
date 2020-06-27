@@ -27,7 +27,7 @@ public class CategoriaMedicamentoService {
 		return categoriaedicamentorepository.save(obj);
 	}
 	public CategoriaMedicamento fromDTO(CategoriaMedicamentoDTO objDto) {
-		return new CategoriaMedicamento(objDto.getId(),objDto.getDescricao(),null);
+		return new CategoriaMedicamento(objDto.getId(),objDto.getNome(),null);
 	}
 	public void delete(Integer id) {
 		find(id);
@@ -44,11 +44,11 @@ public class CategoriaMedicamentoService {
 	}
 	
 	public CategoriaMedicamento fromDTO(CategoriaMedicamento objDto) {
-		return new CategoriaMedicamento(objDto.getId(),objDto.getDescricao(),null);
+		return new CategoriaMedicamento(objDto.getId(),objDto.getNome(),null);
 	}
 	
 	private void updateData(CategoriaMedicamento newObj, CategoriaMedicamento obj) {
-		newObj.setDescricao(obj.getDescricao());
+		newObj.setNome(obj.getNome());
 	}
 	
 	public CategoriaMedicamento update(CategoriaMedicamento obj) {

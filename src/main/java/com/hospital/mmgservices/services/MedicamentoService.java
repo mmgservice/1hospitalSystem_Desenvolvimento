@@ -27,6 +27,8 @@ public class MedicamentoService {
 		return new MedicamentoDTO(medicamento);
 	}
 	public Medicamento fromDTO(MedicamentoDTO objDto) {
-		return new Medicamento(objDto.getId(),objDto.getNome(),new CategoriaMedicamento(objDto.getCategoriaId(),null,null),null);
+		return new Medicamento(objDto.getId(),objDto.getNome(),
+				                new CategoriaMedicamento(objDto.getCategoriamedicamento().getId(),
+				                                         objDto.getCategoriamedicamento().getNome(),null),null);
 	}
 }

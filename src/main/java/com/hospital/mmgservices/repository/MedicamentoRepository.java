@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.hospital.mmgservices.domain.Medicamento;
 
 @Repository
-public interface MedicamentoRepository extends JpaRepository<Medicamento, Integer> {
+public interface MedicamentoRepository extends JpaRepository<Medicamento, Integer>{
 
 }

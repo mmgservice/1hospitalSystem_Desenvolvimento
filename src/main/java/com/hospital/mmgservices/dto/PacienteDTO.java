@@ -24,7 +24,8 @@ public class PacienteDTO implements Serializable {
 	private String cep;
 	private String bairro;
 	private String estadocivil;
-    private String obs;
+	private String obs;
+	private TelefoneDTO telefone;
 	private String nomedamae;
 	private String nomedopai;
 	private CidadeDTO cidade;
@@ -36,27 +37,29 @@ public class PacienteDTO implements Serializable {
 	}
 
 	public PacienteDTO(Paciente obj) {
-		if(obj != null) {
-		this.id = obj.getId();
-		this.datasistema = obj.getDatasistema();
-		this.nome = obj.getNome();
-		this.sobrenome = obj.getSobrenome();
-		this.datanascimento = obj.getDatanascimento();
-		this.idade = obj.getIdade();
-		this.rg = obj.getRg();
-		this.cpf = obj.getCpf();
-		this.sexo = obj.getSexo();
-		this.cor = obj.getCor();
-		this.endereco = obj.getEndereco();
-		this.complemento = obj.getComplemento();
-		this.cep = obj.getCep();
-		this.bairro = obj.getCep();
-		this.estadocivil = obj.getEstadocivil();
-		this.nomedamae = obj.getNomedamae();
-		this.nomedopai = obj.getNomedopai();
-		this.cidade = new CidadeDTO(obj.getCidade());
-		this.alergia = new AlergiaDTO(obj.getAlergia());
-		this.residenciaId = obj.getResidenciaEnum();
+		if (obj != null) {
+			this.id = obj.getId();
+			this.datasistema = obj.getDatasistema();
+			this.nome = obj.getNome();
+			this.sobrenome = obj.getSobrenome();
+			this.datanascimento = obj.getDatanascimento();
+			this.idade = obj.getIdade();
+			this.rg = obj.getRg();
+			this.cpf = obj.getCpf();
+			this.sexo = obj.getSexo();
+			this.cor = obj.getCor();
+			this.endereco = obj.getEndereco();
+			this.complemento = obj.getComplemento();
+			this.cep = obj.getCep();
+			this.bairro = obj.getCep();
+			this.estadocivil = obj.getEstadocivil();
+			this.obs = obj.getObs();
+			this.nomedamae = obj.getNomedamae();
+			this.nomedopai = obj.getNomedopai();
+			this.cidade = new CidadeDTO(obj.getCidade());
+			this.alergia = new AlergiaDTO(obj.getAlergia());
+			this.residenciaId = obj.getResidenciaEnum();
+
 		}
 	}
 
@@ -188,6 +191,14 @@ public class PacienteDTO implements Serializable {
 		this.obs = obs;
 	}
 
+	public TelefoneDTO getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(TelefoneDTO telefone) {
+		this.telefone = telefone;
+	}
+
 	public String getNomedamae() {
 		return nomedamae;
 	}
@@ -237,8 +248,5 @@ public class PacienteDTO implements Serializable {
 				+ ", nomedopai=" + nomedopai + ", cidade=" + cidade + ", alergia=" + alergia + ", residenciaId="
 				+ residenciaId + "]";
 	}
-
-
-	
 
 }

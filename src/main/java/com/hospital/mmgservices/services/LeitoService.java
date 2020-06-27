@@ -56,7 +56,7 @@ public class LeitoService {
 	}
 
 	public Leito fromDTO(LeitoDTO objDto) {
-		Quarto quarto = new Quarto(objDto.getQuartoId(), null, null);
+		Quarto quarto = new Quarto(objDto.getQuarto().getId(),objDto.getQuarto().getNome(), null);
 		return new Leito(objDto.getId(), objDto.getNomequarto(), quarto,
 				StatusQuartoEnum.toEnum(objDto.getStatusquartoenum()));
 	}

@@ -69,6 +69,6 @@ public class FarmaciaService {
 				            objDto.getQuantidadetotal(),
 				            objDto.getDatavencimento(),
 				            objDto.getValor(),
-				            objDto.getValortotal(),new Medicamento(objDto.getMedicamentoId(),null,null,null));
+				            objDto.getValortotal(),new Medicamento(objDto.getMedicamento().getId(),objDto.getMedicamento().getNome(),null,null));
 	}
 }

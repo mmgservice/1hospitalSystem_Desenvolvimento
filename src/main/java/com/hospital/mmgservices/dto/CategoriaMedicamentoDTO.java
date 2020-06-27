@@ -10,31 +10,38 @@ public class CategoriaMedicamentoDTO implements Serializable{
 	
 	
 	private Integer id;
-	private String descricao;
+	private String nome;
 	
 	public CategoriaMedicamentoDTO() {
 		
 	}
+	
 	public CategoriaMedicamentoDTO(CategoriaMedicamento obj) {
 		this.id = obj.getId();
-		this.descricao = obj.getDescricao();
+		this.nome = obj.getNome();
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDescricao() {
-		return descricao;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+
 	@Override
 	public String toString() {
-		return "CategoriaMedicamentoDTO [id=" + id + ", descricao=" + descricao + "]";
+		return "CategoriaMedicamentoDTO [id=" + id + ", Nome=" + nome + "]";
 	}
+
 	
 	
 	
