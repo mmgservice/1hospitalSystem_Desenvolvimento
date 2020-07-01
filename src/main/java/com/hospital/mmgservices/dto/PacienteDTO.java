@@ -25,11 +25,14 @@ public class PacienteDTO implements Serializable {
 	private String bairro;
 	private String estadocivil;
 	private String obs;
-	private TelefoneDTO telefone;
 	private String nomedamae;
 	private String nomedopai;
 	private CidadeDTO cidade;
+	private String telefone1;
+	private String telefone2;
+	private String telefone3;
 	private AlergiaDTO alergia;
+	private Integer tipoSanguineoId;
 	private Integer residenciaId;
 
 	public PacienteDTO() {
@@ -57,9 +60,12 @@ public class PacienteDTO implements Serializable {
 			this.nomedamae = obj.getNomedamae();
 			this.nomedopai = obj.getNomedopai();
 			this.cidade = new CidadeDTO(obj.getCidade());
+			this.telefone1 = obj.getTelefone1();
+			this.telefone2 = obj.getTelefone2();
+			this.telefone3 = obj.getTelefone3();
 			this.alergia = new AlergiaDTO(obj.getAlergia());
+			this.tipoSanguineoId = obj.getTipoSanguineoEnum();
 			this.residenciaId = obj.getResidenciaEnum();
-
 		}
 	}
 
@@ -191,14 +197,6 @@ public class PacienteDTO implements Serializable {
 		this.obs = obs;
 	}
 
-	public TelefoneDTO getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(TelefoneDTO telefone) {
-		this.telefone = telefone;
-	}
-
 	public String getNomedamae() {
 		return nomedamae;
 	}
@@ -223,12 +221,44 @@ public class PacienteDTO implements Serializable {
 		this.cidade = cidade;
 	}
 
+	public String getTelefone1() {
+		return telefone1;
+	}
+
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+
+	public String getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public String getTelefone3() {
+		return telefone3;
+	}
+
+	public void setTelefone3(String telefone3) {
+		this.telefone3 = telefone3;
+	}
+
 	public AlergiaDTO getAlergia() {
 		return alergia;
 	}
 
 	public void setAlergia(AlergiaDTO alergia) {
 		this.alergia = alergia;
+	}
+
+	public Integer getTipoSanguineoId() {
+		return tipoSanguineoId;
+	}
+
+	public void setTipoSanguineoId(Integer tipoSanguineoId) {
+		this.tipoSanguineoId = tipoSanguineoId;
 	}
 
 	public Integer getResidenciaId() {

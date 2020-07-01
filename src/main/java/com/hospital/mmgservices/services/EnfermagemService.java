@@ -34,7 +34,7 @@ public class EnfermagemService {
 
 	public Enfermagem fromDTO(EnfermagemDTO objDto) {
 		return new Enfermagem(objDto.getId(), objDto.getNome(), objDto.getCoren(),
-				new ExpecialidadeEnfermagem(objDto.getExpecialidade().getId(), objDto.getExpecialidade().getExpecialidade(), null), null);
+				new ExpecialidadeEnfermagem(objDto.getExpecialidade().getId(), null, null), null);
 	}
 
 	public Enfermagem find(Integer id) {

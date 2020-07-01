@@ -5,23 +5,23 @@ import java.sql.Date;
 
 import com.hospital.mmgservices.domain.EvolucaoEnfermagem;
 
-public class EvolucaoEnfermagemDTO implements Serializable{
+public class EvolucaoEnfermagemDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String evolucaoenf;
 	private Date dataevolucao;
-	private Integer enfermagemId;
-	
+	private EnfermagemDTO enfermagem;
+
 	public EvolucaoEnfermagemDTO() {
-		
+
 	}
-	
+
 	public EvolucaoEnfermagemDTO(EvolucaoEnfermagem obj) {
 		this.id = obj.getId();
 		this.evolucaoenf = obj.getEvolucaoenf();
 		this.dataevolucao = obj.getDataevolucao();
-		this.enfermagemId = obj.getEnfermagem().getId();
+		this.enfermagem = new EnfermagemDTO(obj.getEnfermagem());
 	}
 
 	public Integer getId() {
@@ -48,19 +48,18 @@ public class EvolucaoEnfermagemDTO implements Serializable{
 		this.dataevolucao = dataevolucao;
 	}
 
-	public Integer getEnfermagemId() {
-		return enfermagemId;
+	public EnfermagemDTO getEnfermagem() {
+		return enfermagem;
 	}
 
-	public void setEnfermagemId(Integer enfermagemId) {
-		this.enfermagemId = enfermagemId;
+	public void setEnfermagem(EnfermagemDTO enfermagem) {
+		this.enfermagem = enfermagem;
 	}
 
 	@Override
 	public String toString() {
 		return "EvolucaoEnfermagemDTO [id=" + id + ", evolucaoenf=" + evolucaoenf + ", dataevolucao=" + dataevolucao
-				+ ", enfermagemId=" + enfermagemId + "]";
+				+ ", enfermagem=" + enfermagem + "]";
 	}
-	
-	
+
 }

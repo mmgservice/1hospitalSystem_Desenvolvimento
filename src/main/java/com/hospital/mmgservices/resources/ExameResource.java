@@ -14,51 +14,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.hospital.mmgservices.domain.EvolucaoEnfermagem;
-import com.hospital.mmgservices.dto.EvolucaoEnfermagemDTO;
-import com.hospital.mmgservices.services.EvolucaoEnfService;
+import com.hospital.mmgservices.domain.Exame;
+import com.hospital.mmgservices.dto.ExameDTO;
+import com.hospital.mmgservices.services.ExameService;
 
 @RestController
-@RequestMapping(value = "/evolucaoenf")
-public class EvolucaoEnfResource {
+@RequestMapping(value = "/exames")
+public class ExameResource {
 
 	@Autowired
-	private EvolucaoEnfService evolucaoenfservice;
-
+    private ExameService exameService;
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<EvolucaoEnfermagemDTO>> findAll() {
-		List<EvolucaoEnfermagem> list = evolucaoenfservice.findAll();
-		List<EvolucaoEnfermagemDTO> listDTO = list.stream().map(obj -> new EvolucaoEnfermagemDTO(obj))
+	public ResponseEntity<List<ExameDTO>> findAll() {
+		List<Exame> list = exameService.findAll();
+		List<ExameDTO> listDTO = list.stream().map(obj -> new ExameDTO(obj))
 				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	public ResponseEntity<EvolucaoEnfermagem> find(@PathVariable Integer id) {
-		EvolucaoEnfermagem obj = evolucaoenfservice.find(id);
-		return ResponseEntity.ok().body(obj);
-	}	
-
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody EvolucaoEnfermagemDTO objDto) {
-		EvolucaoEnfermagem obj = evolucaoenfservice.fromDTO(objDto);
-		obj = evolucaoenfservice.insert(obj);
+	public ResponseEntity<Void> insert(@Valid @RequestBody ExameDTO objDto) {
+		Exame obj = exameService.fromDTO(objDto);
+		obj = exameService.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-
+	
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	public ResponseEntity<Exame> find(@PathVariable Integer id) {
+		Exame obj = exameService.find(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody EvolucaoEnfermagemDTO objDto, @PathVariable Integer id) {
-		EvolucaoEnfermagem obj = evolucaoenfservice.fromDTO(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody ExameDTO objDto,
+			@PathVariable Integer id) {
+		Exame obj = exameService.fromDTO(objDto);
 		obj.setId(id);
-		obj = evolucaoenfservice.update(obj);
+		obj = exameService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
-
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		evolucaoenfservice.delete(id);
+		exameService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+
 }

@@ -62,6 +62,6 @@ public class EvolucaoEnfService {
 		return new EvolucaoEnfermagem(objDto.getId(),
 				                      objDto.getEvolucaoenf(),
 				                      objDto.getDataevolucao(),
-				                      new Enfermagem(objDto.getEnfermagemId(),null,null,null,null));
+				                      new Enfermagem(objDto.getEnfermagem().getId(),null,null,null,null));
 	}
 }

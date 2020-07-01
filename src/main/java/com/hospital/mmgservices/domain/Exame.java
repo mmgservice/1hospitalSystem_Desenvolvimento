@@ -1,7 +1,7 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hospital.mmgservices.domain.enums.StatusExameEnum;
 
 @Entity
 public class Exame implements Serializable {
@@ -34,35 +35,36 @@ public class Exame implements Serializable {
 	@JoinColumn(name = "nomeexame_id")
 	private NomeExame nomeexame;
 
-	@ManyToOne
-	@JoinColumn(name = "statusexame_id")
-	private StatusExame statusexame;
+	private Integer StatusExameEnum;
 
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 
 	@ManyToOne
-	@JoinColumn(name = "exame_id")
+	@JoinColumn(name = "medico_id")
 	private Medico medico;
-	
-	//@OneToMany(mappedBy = "exame")
-	//private List<Prontuario> prontuario = new ArrayList<>();
+
+	// @OneToMany(mappedBy = "exame")
+	// private List<Prontuario> prontuario = new ArrayList<>();
 
 	public Exame() {
 
 	}
 
-	public Exame(Integer id, Date datasistema, Date dataexame, NomeExame nomeexame, StatusExame statusexame,
-			Paciente paciente) {
+	public Exame(Integer id, Date datasistema, Date dataexame, NomeExame nomeexame, StatusExameEnum statusExameEnum,
+			Paciente paciente, Medico medico) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
 		this.dataexame = dataexame;
 		this.nomeexame = nomeexame;
-		this.statusexame = statusexame;
+		StatusExameEnum = (statusExameEnum == null) ? null : statusExameEnum.getCod();
 		this.paciente = paciente;
+		this.medico = medico;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -96,12 +98,12 @@ public class Exame implements Serializable {
 		this.nomeexame = nomeexame;
 	}
 
-	public StatusExame getStatusexame() {
-		return statusexame;
+	public Integer getStatusExameEnum() {
+		return StatusExameEnum;
 	}
 
-	public void setStatusexame(StatusExame statusexame) {
-		this.statusexame = statusexame;
+	public void setStatusExameEnum(Integer statusExameEnum) {
+		StatusExameEnum = statusExameEnum;
 	}
 
 	public Paciente getPaciente() {
@@ -110,6 +112,14 @@ public class Exame implements Serializable {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	@Override

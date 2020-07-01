@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hospital.mmgservices.domain.enums.ResidenciaEnum;
+import com.hospital.mmgservices.domain.enums.TipoSanguineoEnum;
 
 @Entity
 public class Paciente implements Serializable {
@@ -81,10 +82,16 @@ public class Paciente implements Serializable {
 	@JsonIgnore
 	private Cidade cidade;
 
+	private String telefone1;
+	private String telefone2;
+	private String telefone3;
+
 	@ManyToOne
 	@JoinColumn(name = "alergia_id")
 	@JsonIgnore
 	private Alergia alergia;
+	
+	private Integer TipoSanguineoEnum;
 
 	@Column(name = "obs", nullable = true)
 	private String obs;
@@ -95,18 +102,15 @@ public class Paciente implements Serializable {
 	@OneToMany(mappedBy = "paciente")
 	private List<Internacao> internacao = new ArrayList<>();
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "paciente")
-	private List<Telefone> telefone = new ArrayList<Telefone>();
-
 	public Paciente() {
 
 	}
 
 	public Paciente(Integer id, Date datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
 			String rg, String cpf, String sexo, String cor, String endereco, String complemento, String cep,
-			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade, Alergia alergia,
-			String obs, ResidenciaEnum residenciaEnum, List<Internacao> internacao, List<Telefone> telefone) {
+			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade, Alergia alergia,TipoSanguineoEnum tipoSanguineoEnum,
+			String obs, ResidenciaEnum residenciaEnum, List<Internacao> internacao, String telefone1, String telefone2,
+			String telefone3) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
@@ -127,10 +131,13 @@ public class Paciente implements Serializable {
 		this.nomedopai = nomedopai;
 		this.cidade = cidade;
 		this.alergia = alergia;
+		TipoSanguineoEnum = (tipoSanguineoEnum == null) ? null : tipoSanguineoEnum.getCod();
 		this.obs = obs;
 		ResidenciaEnum = (residenciaEnum == null) ? null : residenciaEnum.getCod();
 		this.internacao = internacao;
-		this.telefone = telefone;
+		this.telefone1 = telefone1;
+		this.telefone2 = telefone2;
+		this.telefone3 = telefone3;
 	}
 
 	public Integer getId() {
@@ -284,6 +291,14 @@ public class Paciente implements Serializable {
 	public void setAlergia(Alergia alergia) {
 		this.alergia = alergia;
 	}
+	
+	public Integer getTipoSanguineoEnum() {
+		return TipoSanguineoEnum;
+	}
+
+	public void setTipoSanguineoEnum(Integer tipoSanguineoEnum) {
+		TipoSanguineoEnum = tipoSanguineoEnum;
+	}
 
 	public String getObs() {
 		return obs;
@@ -309,12 +324,28 @@ public class Paciente implements Serializable {
 		this.internacao = internacao;
 	}
 
-	public List<Telefone> getTelefone() {
-		return telefone;
+	public String getTelefone1() {
+		return telefone1;
 	}
 
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+
+	public String getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public String getTelefone3() {
+		return telefone3;
+	}
+
+	public void setTelefone3(String telefone3) {
+		this.telefone3 = telefone3;
 	}
 
 	@Override
