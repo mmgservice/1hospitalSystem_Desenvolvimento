@@ -1,8 +1,10 @@
 package com.hospital.mmgservices.domain;
 
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -62,6 +66,8 @@ public class Prescricao implements Serializable{
 	@JoinColumn(name = "enfer_id")
 	@JsonIgnore
 	private Enfermagem enfermagem;
+	
+	
 	
 	public Prescricao() {
 		

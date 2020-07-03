@@ -24,6 +24,10 @@ public class PrescricaoDTO implements Serializable{
 	private MedicoDTO medico;
 	private EnfermagemDTO enfermagem;
 	
+	public PrescricaoDTO() {
+		
+	}
+	
 	public PrescricaoDTO(Prescricao obj) {
 		this.id = obj.getId();
 		this.datasistema = obj.getDatasistema();

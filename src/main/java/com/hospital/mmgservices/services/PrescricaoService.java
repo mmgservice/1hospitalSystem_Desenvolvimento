@@ -78,7 +78,7 @@ public class PrescricaoService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Não possivel excluir uma prescricao");
+			throw new DataIntegrityViolationException("Não é possivel excluir uma prescricao");
 		}
 	}
 }

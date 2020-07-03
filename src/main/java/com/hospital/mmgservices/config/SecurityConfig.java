@@ -38,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/prescricao/**",
 			"/nomeexames/**",
 			"/telefones/**",
-			"/exames/**"
+			"/exames/**",
+			"/prescricao/**"
 	};
 	
 	@Override
