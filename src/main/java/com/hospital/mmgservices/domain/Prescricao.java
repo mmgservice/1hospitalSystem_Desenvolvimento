@@ -48,13 +48,13 @@ public class Prescricao implements Serializable{
 	@Column(name = "horario3", nullable = true)
 	private Time horario3;
 	
-	@Column(name = "horario4",nullable = true)
+	@Column(name = "horario4",nullable = false)
 	private Time horario4;
 	
-	@Column(name = "horario5", nullable = true)
+	@Column(name = "horario5", nullable = false)
 	private Time horario5;
 	
-	@Column(name = "horario6", nullable = true)
+	@Column(name = "horario6", nullable = false)
 	private Time horario6;
 	
 	@ManyToOne

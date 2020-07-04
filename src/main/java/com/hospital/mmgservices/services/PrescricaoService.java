@@ -71,7 +71,18 @@ public class PrescricaoService {
     			 							  objDto.getHorario4(),
     			 							  objDto.getHorario5(),
     			 							  objDto.getHorario6(),medico,enfemagem);
-    			return prescricao;
+    	if(objDto.getHorario4() != null) {
+			prescricao.setHorario4(objDto.getHorario4());
+		}
+    	if(objDto.getHorario5() != null) {
+			prescricao.setHorario5(objDto.getHorario5());
+		}
+    	if(objDto.getHorario6() != null) {
+			prescricao.setHorario6(objDto.getHorario6());
+		}
+    	
+    	
+    	return prescricao;
     }
     public void delete(Integer id) {
 		find(id);
