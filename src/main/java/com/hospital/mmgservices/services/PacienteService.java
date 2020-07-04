@@ -40,6 +40,22 @@ public class PacienteService {
 
 	private void updateData(Paciente newObj, Paciente obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setAlergia(obj.getAlergia());
+		newObj.setBairro(obj.getBairro());
+		newObj.setCep(obj.getCep());
+		newObj.setCidade(obj.getCidade());
+		newObj.setComplemento(obj.getComplemento());
+		newObj.setCor(obj.getCor());
+		newObj.setNomedamae(obj.getNomedamae());
+		newObj.setRg(obj.getRg());
+		newObj.setSobrenome(obj.getSobrenome());
+		newObj.setTelefone1(obj.getTelefone1());
+		newObj.setTelefone2(obj.getTelefone2());
+		newObj.setTelefone3(obj.getTelefone3());
+		newObj.setDatanascimento(obj.getDatanascimento());
+		newObj.setTipoSanguineoEnum(obj.getTipoSanguineoEnum());
+		newObj.setObs(obj.getObs());
+		newObj.setEstadocivil(obj.getEstadocivil());
 	}
 
 	public void delete(Integer id) throws ObjectNotFoundException {
