@@ -1,7 +1,6 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hospital.mmgservices.domain.enums.ResidenciaEnum;
 import com.hospital.mmgservices.domain.enums.TipoSanguineoEnum;
@@ -28,9 +26,8 @@ public class Paciente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "datasistema", nullable = true)
-	private Date datasistema;
+	private String datasistema;
 
 	@Column(name = "nome", length = 50, nullable = true)
 	private String nome;
@@ -106,7 +103,7 @@ public class Paciente implements Serializable {
 
 	}
 
-	public Paciente(Integer id, Date datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
+	public Paciente(Integer id, String datasistema, String nome, String sobrenome, String datanascimento, Integer idade,
 			String rg, String cpf, String sexo, String cor, String endereco, String complemento, String cep,
 			String bairro, String estadocivil, String nomedamae, String nomedopai, Cidade cidade, Alergia alergia,TipoSanguineoEnum tipoSanguineoEnum,
 			String obs, ResidenciaEnum residenciaEnum, List<Internacao> internacao, String telefone1, String telefone2,
@@ -148,11 +145,11 @@ public class Paciente implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDatasistema() {
+	public String getDatasistema() {
 		return datasistema;
 	}
 
-	public void setDatasistema(Date datasistema) {
+	public void setDatasistema(String datasistema) {
 		this.datasistema = datasistema;
 	}
 

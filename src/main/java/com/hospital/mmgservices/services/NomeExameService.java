@@ -51,6 +51,8 @@ public class NomeExameService {
 
 	private void updateData(NomeExame newObj, NomeExame obj) {
 		newObj.setNomedoexame(obj.getNomedoexame());
+		newObj.setValor(obj.getValor());
+		newObj.setCategoriaexame(obj.getCategoriaexame());
 	}
 
 	public void delete(Integer id) throws ObjectNotFoundException {

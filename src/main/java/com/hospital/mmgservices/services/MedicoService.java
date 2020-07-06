@@ -37,6 +37,8 @@ public class MedicoService {
 
 	private void updateData(Medico newObj, Medico obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setCrm(obj.getCrm());
+		newObj.setExpecialidademedico(obj.getExpecialidademedico());
 	}
 
 	public Medico find(Integer id) throws ObjectNotFoundException {

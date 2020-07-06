@@ -1,7 +1,6 @@
 package com.hospital.mmgservices.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,11 +24,13 @@ public class Exame implements Serializable {
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "datasistema", nullable = true)
-	private Date datasistema;
+	private String datasistema;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "dataexame", nullable = true)
-	private Date dataexame;
+	private String dataexame;
+
+	private String horario;
 
 	@ManyToOne
 	@JoinColumn(name = "nomeexame_id")
@@ -52,12 +53,15 @@ public class Exame implements Serializable {
 
 	}
 
-	public Exame(Integer id, Date datasistema, Date dataexame, NomeExame nomeexame, StatusExameEnum statusExameEnum,
-			Paciente paciente, Medico medico) {
+	
+
+	public Exame(Integer id, String datasistema, String dataexame, String horario, NomeExame nomeexame,
+			StatusExameEnum statusExameEnum, Paciente paciente, Medico medico) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
 		this.dataexame = dataexame;
+		this.horario = horario;
 		this.nomeexame = nomeexame;
 		StatusExameEnum = (statusExameEnum == null) ? null : statusExameEnum.getCod();
 		this.paciente = paciente;
@@ -74,20 +78,28 @@ public class Exame implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDatasistema() {
+	public String getDatasistema() {
 		return datasistema;
 	}
 
-	public void setDatasistema(Date datasistema) {
+	public void setDatasistema(String datasistema) {
 		this.datasistema = datasistema;
 	}
 
-	public Date getDataexame() {
+	public String getDataexame() {
 		return dataexame;
 	}
 
-	public void setDataexame(Date dataexame) {
+	public void setDataexame(String dataexame) {
 		this.dataexame = dataexame;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 
 	public NomeExame getNomeexame() {

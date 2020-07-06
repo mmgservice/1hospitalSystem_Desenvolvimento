@@ -1,7 +1,6 @@
 package com.hospital.mmgservices.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import com.hospital.mmgservices.domain.Paciente;
 
@@ -10,7 +9,7 @@ public class PacienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private Date datasistema;
+	private String datasistema;
 	private String nome;
 	private String sobrenome;
 	private String datanascimento;
@@ -77,11 +76,11 @@ public class PacienteDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDatasistema() {
+	public String getDatasistema() {
 		return datasistema;
 	}
 
-	public void setDatasistema(Date datasistema) {
+	public void setDatasistema(String datasistema) {
 		this.datasistema = datasistema;
 	}
 

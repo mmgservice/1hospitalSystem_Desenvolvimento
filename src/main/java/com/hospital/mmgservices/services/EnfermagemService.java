@@ -51,6 +51,8 @@ public class EnfermagemService {
 
 	private void updateData(Enfermagem newObj, Enfermagem obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setCoren(obj.getCoren());
+		newObj.setExpecialidadeenfermagem(obj.getExpecialidadeenfermagem());
 	}
 
 	public void delete(Integer id) {

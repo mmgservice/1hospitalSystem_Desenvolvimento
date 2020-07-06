@@ -1,7 +1,6 @@
 package com.hospital.mmgservices.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.hospital.mmgservices.domain.Exame;
 
@@ -9,8 +8,9 @@ public class ExameDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private Date datasistema;
-	private Date dataexame;
+	private String datasistema;
+	private String dataexame;
+	private String horario;
 	private NomeExameDTO nomeexame;
 	private Integer statusExameId;
 	private PacienteDTO paciente;
@@ -21,9 +21,10 @@ public class ExameDTO implements Serializable {
 	}
 
 	public ExameDTO(Exame obj) {
-		this.id = obj.getId(); 
+		this.id = obj.getId();
 		this.datasistema = obj.getDatasistema();
 		this.dataexame = obj.getDataexame();
+		this.horario = obj.getHorario();
 		this.nomeexame = new NomeExameDTO(obj.getNomeexame());
 		this.statusExameId = obj.getStatusExameEnum();
 		this.paciente = new PacienteDTO(obj.getPaciente());
@@ -39,19 +40,27 @@ public class ExameDTO implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDatasistema() {
+	public String getDatasistema() {
 		return datasistema;
 	}
 
-	public void setDatasistema(Date datasistema) {
+	public void setDatasistema(String datasistema) {
 		this.datasistema = datasistema;
 	}
 
-	public Date getDataexame() {
+	public String getDataexame() {
 		return dataexame;
 	}
 
-	public void setDataexame(Date dataexame) {
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public void setDataexame(String dataexame) {
 		this.dataexame = dataexame;
 	}
 
@@ -89,8 +98,9 @@ public class ExameDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ExameDTO [id=" + id + ", datasistema=" + datasistema + ", dataexame=" + dataexame + ", nomeexame="
-				+ nomeexame + ", statusexame=" + statusExameId + ", paciente=" + paciente + ", medico=" + medico + "]";
+		return "ExameDTO [id=" + id + ", datasistema=" + datasistema + ", dataexame=" + dataexame + ", horario="
+				+ horario + ", nomeexame=" + nomeexame + ", statusExameId=" + statusExameId + ", paciente=" + paciente
+				+ ", medico=" + medico + "]";
 	}
 
 }
