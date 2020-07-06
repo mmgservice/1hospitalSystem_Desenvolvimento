@@ -56,6 +56,7 @@ public class CidadeService {
 
 	private void updateData(Cidade newObj, Cidade obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setEstado(obj.getEstado());
 	}
 
 	public List<Cidade> findByEstado(Integer estadoId){
