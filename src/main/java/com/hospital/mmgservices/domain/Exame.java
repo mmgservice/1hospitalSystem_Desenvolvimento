@@ -30,8 +30,6 @@ public class Exame implements Serializable {
 	@Column(name = "dataexame", nullable = true)
 	private String dataexame;
 
-	private String horario;
-
 	@ManyToOne
 	@JoinColumn(name = "nomeexame_id")
 	private NomeExame nomeexame;
@@ -55,13 +53,12 @@ public class Exame implements Serializable {
 
 	
 
-	public Exame(Integer id, String datasistema, String dataexame, String horario, NomeExame nomeexame,
+	public Exame(Integer id, String datasistema, String dataexame, NomeExame nomeexame,
 			StatusExameEnum statusExameEnum, Paciente paciente, Medico medico) {
 		super();
 		this.id = id;
 		this.datasistema = datasistema;
 		this.dataexame = dataexame;
-		this.horario = horario;
 		this.nomeexame = nomeexame;
 		StatusExameEnum = (statusExameEnum == null) ? null : statusExameEnum.getCod();
 		this.paciente = paciente;
@@ -92,14 +89,6 @@ public class Exame implements Serializable {
 
 	public void setDataexame(String dataexame) {
 		this.dataexame = dataexame;
-	}
-
-	public String getHorario() {
-		return horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
 	}
 
 	public NomeExame getNomeexame() {

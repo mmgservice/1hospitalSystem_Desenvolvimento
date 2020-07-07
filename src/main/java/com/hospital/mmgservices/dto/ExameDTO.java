@@ -10,7 +10,6 @@ public class ExameDTO implements Serializable {
 	private Integer id;
 	private String datasistema;
 	private String dataexame;
-	private String horario;
 	private NomeExameDTO nomeexame;
 	private Integer statusExameId;
 	private PacienteDTO paciente;
@@ -24,7 +23,6 @@ public class ExameDTO implements Serializable {
 		this.id = obj.getId();
 		this.datasistema = obj.getDatasistema();
 		this.dataexame = obj.getDataexame();
-		this.horario = obj.getHorario();
 		this.nomeexame = new NomeExameDTO(obj.getNomeexame());
 		this.statusExameId = obj.getStatusExameEnum();
 		this.paciente = new PacienteDTO(obj.getPaciente());
@@ -50,14 +48,6 @@ public class ExameDTO implements Serializable {
 
 	public String getDataexame() {
 		return dataexame;
-	}
-
-	public String getHorario() {
-		return horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
 	}
 
 	public void setDataexame(String dataexame) {
@@ -98,9 +88,9 @@ public class ExameDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ExameDTO [id=" + id + ", datasistema=" + datasistema + ", dataexame=" + dataexame + ", horario="
-				+ horario + ", nomeexame=" + nomeexame + ", statusExameId=" + statusExameId + ", paciente=" + paciente
-				+ ", medico=" + medico + "]";
+		return "ExameDTO [id=" + id + ", datasistema=" + datasistema + ", dataexame=" + dataexame + ", nomeexame="
+				+ nomeexame + ", statusExameId=" + statusExameId + ", paciente=" + paciente + ", medico=" + medico
+				+ "]";
 	}
 
 }

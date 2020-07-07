@@ -44,7 +44,6 @@ public class ExameService {
 	private void updateData(Exame newObj, Exame obj) {
 		newObj.setDatasistema(obj.getDatasistema());
 		newObj.setDataexame(obj.getDataexame());
-		newObj.setHorario(obj.getHorario());
 		newObj.setNomeexame(obj.getNomeexame());
 		newObj.setStatusExameEnum(obj.getStatusExameEnum());
 		newObj.setPaciente(obj.getPaciente());
@@ -69,7 +68,7 @@ public class ExameService {
 	}
 
 	public Exame fromDTO(ExameDTO objDTO) {
-		Exame exame = new Exame(objDTO.getId(),objDTO.getDatasistema(),objDTO.getDataexame(),objDTO.getHorario(),
+		Exame exame = new Exame(objDTO.getId(),objDTO.getDatasistema(),objDTO.getDataexame(),
 				new NomeExame(objDTO.getNomeexame().getId(), null, null, null),
 				StatusExameEnum.toEnum(objDTO.getStatusExameId()),
 				new Paciente(objDTO.getPaciente().getId(), null, objDTO.getPaciente().getNome(), null, null, null, null, null, null, null, null,

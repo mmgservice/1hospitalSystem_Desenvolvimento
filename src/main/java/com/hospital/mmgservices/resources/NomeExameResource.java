@@ -3,6 +3,7 @@ package com.hospital.mmgservices.resources;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.hospital.mmgservices.domain.NomeExame;
 import com.hospital.mmgservices.dto.NomeExameDTO;
 import com.hospital.mmgservices.services.NomeExameService;
+
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
